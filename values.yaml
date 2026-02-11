@@ -2,8 +2,8 @@ ingress:
   className: alb
   sslRedirect: 443
 spring:
-  applicationName: ekssampleboot
+  applicationName: overtake-springbootsample
   dbPassword: ""
 image:
-  repository: "ekssampleboot"
-  tag: "v0.0.1"
+  repository: "533267446521.dkr.ecr.ap-northeast-2.amazonaws.com/overtake-springbootsample"
+  tag: "v0.0.2"
