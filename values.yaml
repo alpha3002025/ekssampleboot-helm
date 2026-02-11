@@ -1,0 +1,9 @@
+ingress:
+  className: alb
+  sslRedirect: 443
+spring:
+  applicationName: ekssampleboot
+  dbPassword: ""
+image:
+  repository: "ekssampleboot"
+  tag: "v0.0.1"

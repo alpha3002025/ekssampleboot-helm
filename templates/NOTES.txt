@@ -1,0 +1,7 @@
+1. Get the application URL by running these commands:
+{{- if .Values.ingress.enabled }}
+  kubectl get ingress --namespace {{ .Release.Namespace }}
+{{- else }}
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace {{ .Release.Namespace }} port-forward svc/ekssampleboot-svc 8080:80
+{{- end }}

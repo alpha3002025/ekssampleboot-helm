@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ekssampleboot
+spec:
+  selector:
+    matchLabels:
+      app: ekssampleboot
+  template:
+    metadata:
+      labels:
+        app: ekssampleboot
+    spec:
+      serviceAccountName: spring-boot-sa # Pod Identity와 연결된 SA ## (podidentity 참고)
+      # 보안 설정: 컨테이너를 Non-Root 유저(65534)로 실행 강제
+      # 65534는 리눅스 표준 'nobody' 유저의 UID/GID입니다.
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        runAsNonRoot: true
+      containers:
+        - name: app
+          image: {{.Values.image.repository}}:{{.Values.image.tag}}
+          # SOPS로 복호화된 Helm Value를 환경변수로 주입
+          env:
+            - name: DB_PASSWORD
+              value: "{{ .Values.spring.dbPassword }}"
+          ports:
+            - containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false # 추가 보안 강화

@@ -1,0 +1,2 @@
+creation_rules:
+  - kms: "arn:aws:kms:ap-northeast-2:533267446521:key/bd93379d-e7de-4ceb-a587-d1052cd3d5e4" # 위에서 생성한 KMS 사용
